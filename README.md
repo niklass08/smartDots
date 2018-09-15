@@ -1,0 +1,2 @@
+# smartDots
+self learnings dots
