@@ -1,9 +1,9 @@
     class dot{
-    constructor(){
+    constructor(mutationRate){
         this.pos = createVector(width/2, height - 5);
         this.speed = createVector(0, 0);
         this.acc = createVector(0, 0);
-        this.brain = new brain(1000);
+        this.brain = new brain(800,mutationRate);
         this.dead = false;
         this.fitness = 0;
         this.reachedGoal = false;
@@ -34,13 +34,20 @@
         this.pos.add(this.speed);
     }
 
-    update(goalX, goalY){
+    update(goalX, goalY, ambush_array){
         if(!this.dead && !this.reachedGoal){
             this.move()
             var x = this.pos.x;
             var y = this.pos.y;
             if(x > width - 1 || x < 0 ||  y > height - 1 || y < 0){
                 this.dead = true;
+            }
+
+            for(let i = 0; i<ambush_array.length; i++){
+                if(dist(ambush_array[i].pos.x, ambush_array[i].pos.y, this.pos.x, this.pos.y) <= (ambush_array[i].diameter)/2){
+                    this.dead = true;
+                }
+                
             }
 
             if(dist(this.pos.x, this.pos.y, goalX, goalY) < 5){

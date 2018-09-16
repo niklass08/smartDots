@@ -1,5 +1,5 @@
 class population{
-    constructor(size){
+    constructor(size, mutationRate){
         this.dots = [];
         this.size = size;
         this.fitnessSum = 0;
@@ -7,7 +7,7 @@ class population{
         this.bestDot = 0;
         this.bestStep = 400;
         for(let i = 0; i<size;i++) {
-            this.dots[i] = new dot();
+            this.dots[i] = new dot(mutationRate);
         }
     }
 
@@ -18,12 +18,12 @@ class population{
         this.dots[0].show();
     }
 
-    update(goalX, goalY){
+    update(goalX, goalY, ambush_array){
         for(let i = 0; i<this.size;i++) {
             if(this.dots[i].brain.step >= this.bestStep){
                 this.dots[i].dead = true;
             }
-            this.dots[i].update(goalX, goalY);
+            this.dots[i].update(goalX, goalY, ambush_array);
         }
     }
 
@@ -78,9 +78,10 @@ class population{
         }
     }
 
-    mutate(){
+    mutate(mutationRate){
         for(let i = 1; i<this.size;i++) {
-            this.dots[i].brain.mutate()
+            this.dots[i].brain.mutationRate = mutationRate;
+            this.dots[i].brain.mutate();
         }
     }
 
@@ -98,5 +99,14 @@ class population{
             this.bestStep = this.dots[maxIndex].brain.step;
         }
         this.bestDot = maxIndex;
+    }
+
+    noGoalReached(){
+        for(let i = 1; i<this.size;i++) {
+            if(this.dots[i].reachedGoal){
+                return false; 
+            }
+        }
+        return true;
     }
 }
