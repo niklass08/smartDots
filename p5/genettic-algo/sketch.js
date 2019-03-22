@@ -7,7 +7,7 @@ function setup() {
   // put setup code
   createCanvas(1920/2, 1080/2); 
   mutationRate = 0.01;
-  pop = new population(10000, mutationRate);
+  pop = new population(1000, mutationRate);
   //obj = new goal(width/2, height - 1);
   obj = new goal(width/2, 5);
   ambush_array =[];
