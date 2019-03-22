@@ -72,7 +72,7 @@ class population{
         var runningSum = 0;
         for(let i = 0; i<this.size;i++) {
             runningSum += this.dots[i].fitness;
-            if(runningSum > rand){
+            if(runningSum >= rand){
                 return this.dots[i];
             }
         }
