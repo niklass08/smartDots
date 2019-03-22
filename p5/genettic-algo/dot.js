@@ -59,8 +59,8 @@
     calculateFitness(goalX, goalY){
         var distance =this.brain.directions.reduce((accu,v)=> Math.abs(v.x)+Math.abs(v.y),0);
         return this.reachedGoal 
-            ? - distance + 10000000000000
-            : -distance 
+            ?  1/distance + 10000000000000
+            : 1/distance
             
         /*
         if(this.reachedGoal){
