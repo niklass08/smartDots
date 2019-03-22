@@ -38,7 +38,7 @@ function draw() {
 
     } else {
 
-      if(mutationRate > 0.01){
+      if(mutationRate > 0.1){
         mutationRate -= 0.005;
       }
 
