@@ -57,19 +57,20 @@
     }
 
     calculateFitness(goalX, goalY){
+        /*
         var distance =this.brain.directions.reduce((accu,v)=> Math.abs(v.x)+Math.abs(v.y),0);
         return this.reachedGoal 
             ?  1/distance + 10000000000000
             : 1/distance
-            
-        /*
+          */  
+      
         if(this.reachedGoal){
             this.fitness = 10000000/(this.brain.step*this.brain.step*this.brain.step*this.brain.step);
         } else {
             var distToGoal = dist(this.pos.x, this.pos.y, goalX, goalY);
             this.fitness = 1.0/(distToGoal * distToGoal*distToGoal * distToGoal);
         }
-        */
+
         return this.fitness;
     }
 
